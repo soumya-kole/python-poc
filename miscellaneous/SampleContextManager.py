@@ -23,14 +23,30 @@ class SampleContextManager(object):
     def __exit__(self, error_type, error_value, traceback):
         print ("I have been called for " + str(self.file_obj) + " with object ref " + self.file_obj.__repr__())
 
+# Alternative of defining class
+
+
+from contextlib import contextmanager
+
+
+@contextmanager
+def context_manager_generator(a, b):
+    d = Divisor(a, b)
+    try:
+        yield d
+    except Exception, e:
+        print e
+    print ("I have been called for " + str(d) + " with object ref " + d.__repr__())
+
 
 if __name__ == '__main__':
 
     with SampleContextManager(4, 1) as s:
         s.divide()
 
-    with SampleContextManager(4, 0) as s:
-        s.divide()
+    with context_manager_generator(4, 0) as s:
+        print s.divide()
+
 
 
 
