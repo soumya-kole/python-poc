@@ -45,7 +45,7 @@ if __name__ == '__main__':
         s.divide()
 
     with context_manager_generator(4, 0) as s:
-        print (s.divide())
+        print(s.divide())
 
 
 
